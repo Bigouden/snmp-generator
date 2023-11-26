@@ -1,0 +1,59 @@
+---
+variables:
+  CONTAINER_SNMP_GENERATOR: prom/snmp-generator:latest
+
+.snmp_generator:
+  image:
+    name: $CONTAINER_SNMP_GENERATOR
+    entrypoint: [""]
+
+.alpine:
+  image:
+    name: $CONTAINER_ALPINE
+    entrypoint: [""]
+
+stages:
+  - Build
+  - Lint
+  - Release
+
+Build:
+  stage: Build
+  extends: .snmp_generator
+  script:
+    - generator generate
+  artifacts:
+    paths:
+      - snmp.yml
+    expire_in: 5 mins
+  variables:
+    MIBDIRS: "mibs/GS108T_110TP_TPP_V7.0.9.17_MIBs"
+
+Lint:
+  stage: Lint
+  extends: .alpine
+  before_script:
+    - apk add npm
+    - npm install -g prettier@latest
+  script:
+    - prettier -w snmp.yml
+  artifacts:
+    paths:
+      - snmp.yml
+    expire_in: 5 mins
+  variables:
+    GIT_STRATEGY: none
+
+Release:
+  stage: Release
+  extends: .alpine
+  before_script:
+    - apk add git
+  script:
+    - git config --global user.email "${GITLAB_USER_EMAIl}"
+    - git config --global user.name "${GITLAB_USER_NAME}"
+    - git add -f snmp.yml
+    - git commit -m "Generate 'snmp.yml' from $CI_COMMIT_SHORT_SHA [skip ci]" || echo "No changes, nothing to commit !"
+    - git remote rm origin
+    - git remote add origin https://gitlab-ci-token:${CI_API_TOKEN}@gitlab.com/${CI_PROJECT_PATH}.git
+    - git push origin HEAD:${CI_COMMIT_REF_NAME}

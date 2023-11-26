@@ -1,0 +1,1058 @@
+# WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
+modules:
+  dot3:
+    walk:
+      - 1.3.6.1.2.1.10.7
+    metrics:
+      - name: dot3StatsIndex
+        oid: 1.3.6.1.2.1.10.7.2.1.1
+        type: gauge
+        help:
+          An index value that uniquely identifies an interface to an ethernet-like
+          medium - 1.3.6.1.2.1.10.7.2.1.1
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsAlignmentErrors
+        oid: 1.3.6.1.2.1.10.7.2.1.2
+        type: counter
+        help:
+          A count of frames received on a particular interface that are not an integral
+          number of octets in length and do not pass the FCS check - 1.3.6.1.2.1.10.7.2.1.2
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsFCSErrors
+        oid: 1.3.6.1.2.1.10.7.2.1.3
+        type: counter
+        help:
+          A count of frames received on a particular interface that are an integral
+          number of octets in length but do not pass the FCS check - 1.3.6.1.2.1.10.7.2.1.3
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsSingleCollisionFrames
+        oid: 1.3.6.1.2.1.10.7.2.1.4
+        type: counter
+        help:
+          A count of frames that are involved in a single collision, and are subsequently
+          transmitted successfully - 1.3.6.1.2.1.10.7.2.1.4
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsMultipleCollisionFrames
+        oid: 1.3.6.1.2.1.10.7.2.1.5
+        type: counter
+        help:
+          A count of frames that are involved in more than one collision and are
+          subsequently transmitted successfully - 1.3.6.1.2.1.10.7.2.1.5
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsSQETestErrors
+        oid: 1.3.6.1.2.1.10.7.2.1.6
+        type: counter
+        help:
+          A count of times that the SQE TEST ERROR is received on a particular interface
+          - 1.3.6.1.2.1.10.7.2.1.6
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsDeferredTransmissions
+        oid: 1.3.6.1.2.1.10.7.2.1.7
+        type: counter
+        help:
+          A count of frames for which the first transmission attempt on a particular
+          interface is delayed because the medium is busy - 1.3.6.1.2.1.10.7.2.1.7
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsLateCollisions
+        oid: 1.3.6.1.2.1.10.7.2.1.8
+        type: counter
+        help:
+          The number of times that a collision is detected on a particular interface
+          later than one slotTime into the transmission of a packet - 1.3.6.1.2.1.10.7.2.1.8
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsExcessiveCollisions
+        oid: 1.3.6.1.2.1.10.7.2.1.9
+        type: counter
+        help:
+          A count of frames for which transmission on a particular interface fails
+          due to excessive collisions - 1.3.6.1.2.1.10.7.2.1.9
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsInternalMacTransmitErrors
+        oid: 1.3.6.1.2.1.10.7.2.1.10
+        type: counter
+        help:
+          A count of frames for which transmission on a particular interface fails
+          due to an internal MAC sublayer transmit error - 1.3.6.1.2.1.10.7.2.1.10
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsCarrierSenseErrors
+        oid: 1.3.6.1.2.1.10.7.2.1.11
+        type: counter
+        help:
+          The number of times that the carrier sense condition was lost or never
+          asserted when attempting to transmit a frame on a particular interface - 1.3.6.1.2.1.10.7.2.1.11
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsFrameTooLongs
+        oid: 1.3.6.1.2.1.10.7.2.1.13
+        type: counter
+        help:
+          A count of frames received on a particular interface that exceed the maximum
+          permitted frame size - 1.3.6.1.2.1.10.7.2.1.13
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsInternalMacReceiveErrors
+        oid: 1.3.6.1.2.1.10.7.2.1.16
+        type: counter
+        help:
+          A count of frames for which reception on a particular interface fails
+          due to an internal MAC sublayer receive error - 1.3.6.1.2.1.10.7.2.1.16
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsEtherChipSet
+        oid: 1.3.6.1.2.1.10.7.2.1.17
+        type: OctetString
+        help:
+          "******** THIS OBJECT IS DEPRECATED ******** This object contains an OBJECT
+          IDENTIFIER which identifies the chipset used to realize the interface - 1.3.6.1.2.1.10.7.2.1.17"
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsSymbolErrors
+        oid: 1.3.6.1.2.1.10.7.2.1.18
+        type: counter
+        help:
+          For an interface operating at 100 Mb/s, the number of times there was
+          an invalid data symbol when a valid carrier was present - 1.3.6.1.2.1.10.7.2.1.18
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3StatsDuplexStatus
+        oid: 1.3.6.1.2.1.10.7.2.1.19
+        type: gauge
+        help: The current mode of operation of the MAC entity - 1.3.6.1.2.1.10.7.2.1.19
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+        enum_values:
+          1: unknown
+          2: halfDuplex
+          3: fullDuplex
+      - name: dot3StatsRateControlAbility
+        oid: 1.3.6.1.2.1.10.7.2.1.20
+        type: gauge
+        help:
+          "'true' for interfaces operating at speeds above 1000 Mb/s that support
+          Rate Control through lowering the average data rate of the MAC sublayer, with
+          frame granularity, and 'false' otherwise. - 1.3.6.1.2.1.10.7.2.1.20"
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+        enum_values:
+          1: "true"
+          2: "false"
+      - name: dot3StatsRateControlStatus
+        oid: 1.3.6.1.2.1.10.7.2.1.21
+        type: gauge
+        help:
+          The current Rate Control mode of operation of the MAC sublayer of this
+          interface. - 1.3.6.1.2.1.10.7.2.1.21
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+        enum_values:
+          1: rateControlOff
+          2: rateControlOn
+          3: unknown
+      - name: dot3CollCount
+        oid: 1.3.6.1.2.1.10.7.5.1.2
+        type: gauge
+        help:
+          The number of per-frame media collisions for which a particular collision
+          histogram cell represents the frequency on a particular interface. - 1.3.6.1.2.1.10.7.5.1.2
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+          - labelname: dot3CollCount
+            type: gauge
+      - name: dot3CollFrequencies
+        oid: 1.3.6.1.2.1.10.7.5.1.3
+        type: counter
+        help:
+          A count of individual MAC frames for which the transmission (successful
+          or otherwise) on a particular interface occurs after the frame has experienced
+          exactly the number of collisions in the associated dot3CollCount object -
+          1.3.6.1.2.1.10.7.5.1.3
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+          - labelname: dot3CollCount
+            type: gauge
+      - name: dot3ControlFunctionsSupported
+        oid: 1.3.6.1.2.1.10.7.9.1.1
+        type: Bits
+        help:
+          A list of the possible MAC Control functions implemented for this interface.
+          - 1.3.6.1.2.1.10.7.9.1.1
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+        enum_values:
+          0: pause
+      - name: dot3ControlInUnknownOpcodes
+        oid: 1.3.6.1.2.1.10.7.9.1.2
+        type: counter
+        help:
+          A count of MAC Control frames received on this interface that contain
+          an opcode that is not supported by this device - 1.3.6.1.2.1.10.7.9.1.2
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3HCControlInUnknownOpcodes
+        oid: 1.3.6.1.2.1.10.7.9.1.3
+        type: counter
+        help:
+          A count of MAC Control frames received on this interface that contain
+          an opcode that is not supported by this device - 1.3.6.1.2.1.10.7.9.1.3
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3PauseAdminMode
+        oid: 1.3.6.1.2.1.10.7.10.1.1
+        type: gauge
+        help:
+          This object is used to configure the default administrative PAUSE mode
+          for this interface - 1.3.6.1.2.1.10.7.10.1.1
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+        enum_values:
+          1: disabled
+          2: enabledXmit
+          3: enabledRcv
+          4: enabledXmitAndRcv
+      - name: dot3PauseOperMode
+        oid: 1.3.6.1.2.1.10.7.10.1.2
+        type: gauge
+        help:
+          This object reflects the PAUSE mode currently in use on this interface,
+          as determined by either (1) the result of the auto-negotiation function or
+          (2) if auto-negotiation is not enabled or is not implemented for the active
+          MAU attached to this interface, by the value of dot3PauseAdminMode - 1.3.6.1.2.1.10.7.10.1.2
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+        enum_values:
+          1: disabled
+          2: enabledXmit
+          3: enabledRcv
+          4: enabledXmitAndRcv
+      - name: dot3InPauseFrames
+        oid: 1.3.6.1.2.1.10.7.10.1.3
+        type: counter
+        help:
+          A count of MAC Control frames received on this interface with an opcode
+          indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.3
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3OutPauseFrames
+        oid: 1.3.6.1.2.1.10.7.10.1.4
+        type: counter
+        help:
+          A count of MAC Control frames transmitted on this interface with an opcode
+          indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.4
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3HCInPauseFrames
+        oid: 1.3.6.1.2.1.10.7.10.1.5
+        type: counter
+        help:
+          A count of MAC Control frames received on this interface with an opcode
+          indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.5
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3HCOutPauseFrames
+        oid: 1.3.6.1.2.1.10.7.10.1.6
+        type: counter
+        help:
+          A count of MAC Control frames transmitted on this interface with an opcode
+          indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.6
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3HCStatsAlignmentErrors
+        oid: 1.3.6.1.2.1.10.7.11.1.1
+        type: counter
+        help:
+          A count of frames received on a particular interface that are not an integral
+          number of octets in length and do not pass the FCS check - 1.3.6.1.2.1.10.7.11.1.1
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3HCStatsFCSErrors
+        oid: 1.3.6.1.2.1.10.7.11.1.2
+        type: counter
+        help:
+          A count of frames received on a particular interface that are an integral
+          number of octets in length but do not pass the FCS check - 1.3.6.1.2.1.10.7.11.1.2
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3HCStatsInternalMacTransmitErrors
+        oid: 1.3.6.1.2.1.10.7.11.1.3
+        type: counter
+        help:
+          A count of frames for which transmission on a particular interface fails
+          due to an internal MAC sublayer transmit error - 1.3.6.1.2.1.10.7.11.1.3
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3HCStatsFrameTooLongs
+        oid: 1.3.6.1.2.1.10.7.11.1.4
+        type: counter
+        help:
+          A count of frames received on a particular interface that exceed the maximum
+          permitted frame size - 1.3.6.1.2.1.10.7.11.1.4
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3HCStatsInternalMacReceiveErrors
+        oid: 1.3.6.1.2.1.10.7.11.1.5
+        type: counter
+        help:
+          A count of frames for which reception on a particular interface fails
+          due to an internal MAC sublayer receive error - 1.3.6.1.2.1.10.7.11.1.5
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+      - name: dot3HCStatsSymbolErrors
+        oid: 1.3.6.1.2.1.10.7.11.1.6
+        type: counter
+        help:
+          For an interface operating at 100 Mb/s, the number of times there was
+          an invalid data symbol when a valid carrier was present - 1.3.6.1.2.1.10.7.11.1.6
+        indexes:
+          - labelname: dot3StatsIndex
+            type: gauge
+  entity_mib:
+    walk:
+      - 1.3.6.1.2.1.47
+    metrics:
+      - name: entPhysicalIndex
+        oid: 1.3.6.1.2.1.47.1.1.1.1.1
+        type: gauge
+        help: The index for this entry. - 1.3.6.1.2.1.47.1.1.1.1.1
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalDescr
+        oid: 1.3.6.1.2.1.47.1.1.1.1.2
+        type: DisplayString
+        help: A textual description of physical entity - 1.3.6.1.2.1.47.1.1.1.1.2
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalVendorType
+        oid: 1.3.6.1.2.1.47.1.1.1.1.3
+        type: OctetString
+        help:
+          An indication of the vendor-specific hardware type of the physical entity
+          - 1.3.6.1.2.1.47.1.1.1.1.3
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalContainedIn
+        oid: 1.3.6.1.2.1.47.1.1.1.1.4
+        type: gauge
+        help:
+          The value of entPhysicalIndex for the physical entity which 'contains'
+          this physical entity - 1.3.6.1.2.1.47.1.1.1.1.4
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalClass
+        oid: 1.3.6.1.2.1.47.1.1.1.1.5
+        type: gauge
+        help: An indication of the general hardware type of the physical entity - 1.3.6.1.2.1.47.1.1.1.1.5
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+        enum_values:
+          1: other
+          2: unknown
+          3: chassis
+          4: backplane
+          5: container
+          6: powerSupply
+          7: fan
+          8: sensor
+          9: module
+          10: port
+          11: stack
+      - name: entPhysicalParentRelPos
+        oid: 1.3.6.1.2.1.47.1.1.1.1.6
+        type: gauge
+        help:
+          An indication of the relative position of this 'child' component among
+          all its 'sibling' components - 1.3.6.1.2.1.47.1.1.1.1.6
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalName
+        oid: 1.3.6.1.2.1.47.1.1.1.1.7
+        type: DisplayString
+        help: The textual name of the physical entity - 1.3.6.1.2.1.47.1.1.1.1.7
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalHardwareRev
+        oid: 1.3.6.1.2.1.47.1.1.1.1.8
+        type: DisplayString
+        help:
+          The vendor-specific hardware revision string for the physical entity -
+          1.3.6.1.2.1.47.1.1.1.1.8
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalFirmwareRev
+        oid: 1.3.6.1.2.1.47.1.1.1.1.9
+        type: DisplayString
+        help:
+          The vendor-specific firmware revision string for the physical entity -
+          1.3.6.1.2.1.47.1.1.1.1.9
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalSoftwareRev
+        oid: 1.3.6.1.2.1.47.1.1.1.1.10
+        type: DisplayString
+        help:
+          The vendor-specific software revision string for the physical entity -
+          1.3.6.1.2.1.47.1.1.1.1.10
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalSerialNum
+        oid: 1.3.6.1.2.1.47.1.1.1.1.11
+        type: DisplayString
+        help: The vendor-specific serial number string for the physical entity - 1.3.6.1.2.1.47.1.1.1.1.11
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalMfgName
+        oid: 1.3.6.1.2.1.47.1.1.1.1.12
+        type: DisplayString
+        help: The name of the manufacturer of this physical component - 1.3.6.1.2.1.47.1.1.1.1.12
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalModelName
+        oid: 1.3.6.1.2.1.47.1.1.1.1.13
+        type: DisplayString
+        help:
+          The vendor-specific model name identifier string associated with this
+          physical component - 1.3.6.1.2.1.47.1.1.1.1.13
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalAlias
+        oid: 1.3.6.1.2.1.47.1.1.1.1.14
+        type: DisplayString
+        help:
+          This object is an 'alias' name for the physical entity as specified by
+          a network manager, and provides a non-volatile 'handle' for the physical entity
+          - 1.3.6.1.2.1.47.1.1.1.1.14
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalAssetID
+        oid: 1.3.6.1.2.1.47.1.1.1.1.15
+        type: DisplayString
+        help:
+          This object is a user-assigned asset tracking identifier for the physical
+          entity as specified by a network manager, and provides non-volatile storage
+          of this information - 1.3.6.1.2.1.47.1.1.1.1.15
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+      - name: entPhysicalIsFRU
+        oid: 1.3.6.1.2.1.47.1.1.1.1.16
+        type: gauge
+        help:
+          This object indicates whether or not this physical entity is considered
+          a 'field replaceable unit' by the vendor - 1.3.6.1.2.1.47.1.1.1.1.16
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+        enum_values:
+          1: "true"
+          2: "false"
+      - name: entLogicalIndex
+        oid: 1.3.6.1.2.1.47.1.2.1.1.1
+        type: gauge
+        help: The value of this object uniquely identifies the logical entity - 1.3.6.1.2.1.47.1.2.1.1.1
+        indexes:
+          - labelname: entLogicalIndex
+            type: gauge
+      - name: entLogicalDescr
+        oid: 1.3.6.1.2.1.47.1.2.1.1.2
+        type: DisplayString
+        help: A textual description of the logical entity - 1.3.6.1.2.1.47.1.2.1.1.2
+        indexes:
+          - labelname: entLogicalIndex
+            type: gauge
+      - name: entLogicalType
+        oid: 1.3.6.1.2.1.47.1.2.1.1.3
+        type: OctetString
+        help: An indication of the type of logical entity - 1.3.6.1.2.1.47.1.2.1.1.3
+        indexes:
+          - labelname: entLogicalIndex
+            type: gauge
+      - name: entLogicalCommunity
+        oid: 1.3.6.1.2.1.47.1.2.1.1.4
+        type: OctetString
+        help:
+          An SNMPv1 or SNMPv2C community-string which can be used to access detailed
+          management information for this logical entity - 1.3.6.1.2.1.47.1.2.1.1.4
+        indexes:
+          - labelname: entLogicalIndex
+            type: gauge
+      - name: entLogicalTAddress
+        oid: 1.3.6.1.2.1.47.1.2.1.1.5
+        type: OctetString
+        help:
+          The transport service address by which the logical entity receives network
+          management traffic, formatted according to the corresponding value of entLogicalTDomain
+          - 1.3.6.1.2.1.47.1.2.1.1.5
+        indexes:
+          - labelname: entLogicalIndex
+            type: gauge
+      - name: entLogicalTDomain
+        oid: 1.3.6.1.2.1.47.1.2.1.1.6
+        type: OctetString
+        help:
+          Indicates the kind of transport service by which the logical entity receives
+          network management traffic - 1.3.6.1.2.1.47.1.2.1.1.6
+        indexes:
+          - labelname: entLogicalIndex
+            type: gauge
+      - name: entLogicalContextEngineID
+        oid: 1.3.6.1.2.1.47.1.2.1.1.7
+        type: OctetString
+        help:
+          The authoritative contextEngineID that can be used to send an SNMP message
+          concerning information held by this logical entity, to the address specified
+          by the associated 'entLogicalTAddress/entLogicalTDomain' pair - 1.3.6.1.2.1.47.1.2.1.1.7
+        indexes:
+          - labelname: entLogicalIndex
+            type: gauge
+      - name: entLogicalContextName
+        oid: 1.3.6.1.2.1.47.1.2.1.1.8
+        type: DisplayString
+        help:
+          The contextName that can be used to send an SNMP message concerning information
+          held by this logical entity, to the address specified by the associated 'entLogicalTAddress/entLogicalTDomain'
+          pair - 1.3.6.1.2.1.47.1.2.1.1.8
+        indexes:
+          - labelname: entLogicalIndex
+            type: gauge
+      - name: entLPPhysicalIndex
+        oid: 1.3.6.1.2.1.47.1.3.1.1.1
+        type: gauge
+        help:
+          The value of this object identifies the index value of a particular entPhysicalEntry
+          associated with the indicated entLogicalEntity. - 1.3.6.1.2.1.47.1.3.1.1.1
+        indexes:
+          - labelname: entLogicalIndex
+            type: gauge
+          - labelname: entLPPhysicalIndex
+            type: gauge
+      - name: entAliasLogicalIndexOrZero
+        oid: 1.3.6.1.2.1.47.1.3.2.1.1
+        type: gauge
+        help:
+          The value of this object identifies the logical entity which defines the
+          naming scope for the associated instance of the 'entAliasMappingIdentifier'
+          object - 1.3.6.1.2.1.47.1.3.2.1.1
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+          - labelname: entAliasLogicalIndexOrZero
+            type: gauge
+      - name: entAliasMappingIdentifier
+        oid: 1.3.6.1.2.1.47.1.3.2.1.2
+        type: OctetString
+        help:
+          The value of this object identifies a particular conceptual row associated
+          with the indicated entPhysicalIndex and entLogicalIndex pair - 1.3.6.1.2.1.47.1.3.2.1.2
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+          - labelname: entAliasLogicalIndexOrZero
+            type: gauge
+      - name: entPhysicalChildIndex
+        oid: 1.3.6.1.2.1.47.1.3.3.1.1
+        type: gauge
+        help: The value of entPhysicalIndex for the contained physical entity. - 1.3.6.1.2.1.47.1.3.3.1.1
+        indexes:
+          - labelname: entPhysicalIndex
+            type: gauge
+          - labelname: entPhysicalChildIndex
+            type: gauge
+      - name: entLastChangeTime
+        oid: 1.3.6.1.2.1.47.1.4.1
+        type: gauge
+        help:
+          "The value of sysUpTime at the time a conceptual row is created, modified,
+          or deleted in any of these tables: - entPhysicalTable - entLogicalTable -
+          entLPMappingTable - entAliasMappingTable - entPhysicalContainsTable - 1.3.6.1.2.1.47.1.4.1"
+  if_mib:
+    walk:
+      - 1.3.6.1.2.1.31
+    metrics:
+      - name: ifName
+        oid: 1.3.6.1.2.1.31.1.1.1.1
+        type: DisplayString
+        help: The textual name of the interface - 1.3.6.1.2.1.31.1.1.1.1
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifInMulticastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.2
+        type: counter
+        help:
+          The number of packets, delivered by this sub-layer to a higher (sub-)layer,
+          which were addressed to a multicast address at this sub-layer - 1.3.6.1.2.1.31.1.1.1.2
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifInBroadcastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.3
+        type: counter
+        help:
+          The number of packets, delivered by this sub-layer to a higher (sub-)layer,
+          which were addressed to a broadcast address at this sub-layer - 1.3.6.1.2.1.31.1.1.1.3
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifOutMulticastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.4
+        type: counter
+        help:
+          The total number of packets that higher-level protocols requested be transmitted,
+          and which were addressed to a multicast address at this sub-layer, including
+          those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.4
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifOutBroadcastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.5
+        type: counter
+        help:
+          The total number of packets that higher-level protocols requested be transmitted,
+          and which were addressed to a broadcast address at this sub-layer, including
+          those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.5
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifHCInOctets
+        oid: 1.3.6.1.2.1.31.1.1.1.6
+        type: counter
+        help:
+          The total number of octets received on the interface, including framing
+          characters - 1.3.6.1.2.1.31.1.1.1.6
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifHCInUcastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.7
+        type: counter
+        help:
+          The number of packets, delivered by this sub-layer to a higher (sub-)layer,
+          which were not addressed to a multicast or broadcast address at this sub-layer
+          - 1.3.6.1.2.1.31.1.1.1.7
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifHCInMulticastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.8
+        type: counter
+        help:
+          The number of packets, delivered by this sub-layer to a higher (sub-)layer,
+          which were addressed to a multicast address at this sub-layer - 1.3.6.1.2.1.31.1.1.1.8
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifHCInBroadcastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.9
+        type: counter
+        help:
+          The number of packets, delivered by this sub-layer to a higher (sub-)layer,
+          which were addressed to a broadcast address at this sub-layer - 1.3.6.1.2.1.31.1.1.1.9
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifHCOutOctets
+        oid: 1.3.6.1.2.1.31.1.1.1.10
+        type: counter
+        help:
+          The total number of octets transmitted out of the interface, including
+          framing characters - 1.3.6.1.2.1.31.1.1.1.10
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifHCOutUcastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.11
+        type: counter
+        help:
+          The total number of packets that higher-level protocols requested be transmitted,
+          and which were not addressed to a multicast or broadcast address at this sub-layer,
+          including those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.11
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifHCOutMulticastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.12
+        type: counter
+        help:
+          The total number of packets that higher-level protocols requested be transmitted,
+          and which were addressed to a multicast address at this sub-layer, including
+          those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.12
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifHCOutBroadcastPkts
+        oid: 1.3.6.1.2.1.31.1.1.1.13
+        type: counter
+        help:
+          The total number of packets that higher-level protocols requested be transmitted,
+          and which were addressed to a broadcast address at this sub-layer, including
+          those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.13
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifLinkUpDownTrapEnable
+        oid: 1.3.6.1.2.1.31.1.1.1.14
+        type: gauge
+        help:
+          Indicates whether linkUp/linkDown traps should be generated for this interface
+          - 1.3.6.1.2.1.31.1.1.1.14
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+        enum_values:
+          1: enabled
+          2: disabled
+      - name: ifHighSpeed
+        oid: 1.3.6.1.2.1.31.1.1.1.15
+        type: gauge
+        help:
+          An estimate of the interface's current bandwidth in units of 1,000,000
+          bits per second - 1.3.6.1.2.1.31.1.1.1.15
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifPromiscuousMode
+        oid: 1.3.6.1.2.1.31.1.1.1.16
+        type: gauge
+        help:
+          This object has a value of false(2) if this interface only accepts packets/frames
+          that are addressed to this station - 1.3.6.1.2.1.31.1.1.1.16
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+        enum_values:
+          1: "true"
+          2: "false"
+      - name: ifConnectorPresent
+        oid: 1.3.6.1.2.1.31.1.1.1.17
+        type: gauge
+        help:
+          This object has the value 'true(1)' if the interface sublayer has a physical
+          connector and the value 'false(2)' otherwise. - 1.3.6.1.2.1.31.1.1.1.17
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+        enum_values:
+          1: "true"
+          2: "false"
+      - name: ifAlias
+        oid: 1.3.6.1.2.1.31.1.1.1.18
+        type: DisplayString
+        help:
+          This object is an 'alias' name for the interface as specified by a network
+          manager, and provides a non-volatile 'handle' for the interface - 1.3.6.1.2.1.31.1.1.1.18
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifCounterDiscontinuityTime
+        oid: 1.3.6.1.2.1.31.1.1.1.19
+        type: gauge
+        help:
+          The value of sysUpTime on the most recent occasion at which any one or
+          more of this interface's counters suffered a discontinuity - 1.3.6.1.2.1.31.1.1.1.19
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifStackHigherLayer
+        oid: 1.3.6.1.2.1.31.1.2.1.1
+        type: gauge
+        help:
+          The value of ifIndex corresponding to the higher sub-layer of the relationship,
+          i.e., the sub-layer which runs on 'top' of the sub-layer identified by the
+          corresponding instance of ifStackLowerLayer - 1.3.6.1.2.1.31.1.2.1.1
+        indexes:
+          - labelname: ifStackHigherLayer
+            type: gauge
+          - labelname: ifStackLowerLayer
+            type: gauge
+      - name: ifStackLowerLayer
+        oid: 1.3.6.1.2.1.31.1.2.1.2
+        type: gauge
+        help:
+          The value of ifIndex corresponding to the lower sub-layer of the relationship,
+          i.e., the sub-layer which runs 'below' the sub-layer identified by the corresponding
+          instance of ifStackHigherLayer - 1.3.6.1.2.1.31.1.2.1.2
+        indexes:
+          - labelname: ifStackHigherLayer
+            type: gauge
+          - labelname: ifStackLowerLayer
+            type: gauge
+      - name: ifStackStatus
+        oid: 1.3.6.1.2.1.31.1.2.1.3
+        type: gauge
+        help: The status of the relationship between two sub-layers - 1.3.6.1.2.1.31.1.2.1.3
+        indexes:
+          - labelname: ifStackHigherLayer
+            type: gauge
+          - labelname: ifStackLowerLayer
+            type: gauge
+        enum_values:
+          1: active
+          2: notInService
+          3: notReady
+          4: createAndGo
+          5: createAndWait
+          6: destroy
+      - name: ifTestId
+        oid: 1.3.6.1.2.1.31.1.3.1.1
+        type: gauge
+        help:
+          This object identifies the current invocation of the interface's test.
+          - 1.3.6.1.2.1.31.1.3.1.1
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifTestStatus
+        oid: 1.3.6.1.2.1.31.1.3.1.2
+        type: gauge
+        help:
+          This object indicates whether or not some manager currently has the necessary
+          'ownership' required to invoke a test on this interface - 1.3.6.1.2.1.31.1.3.1.2
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+        enum_values:
+          1: notInUse
+          2: inUse
+      - name: ifTestType
+        oid: 1.3.6.1.2.1.31.1.3.1.3
+        type: OctetString
+        help:
+          A control variable used to start and stop operator- initiated interface
+          tests - 1.3.6.1.2.1.31.1.3.1.3
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifTestResult
+        oid: 1.3.6.1.2.1.31.1.3.1.4
+        type: gauge
+        help:
+          This object contains the result of the most recently requested test, or
+          the value none(1) if no tests have been requested since the last reset - 1.3.6.1.2.1.31.1.3.1.4
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+        enum_values:
+          1: none
+          2: success
+          3: inProgress
+          4: notSupported
+          5: unAbleToRun
+          6: aborted
+          7: failed
+      - name: ifTestCode
+        oid: 1.3.6.1.2.1.31.1.3.1.5
+        type: OctetString
+        help:
+          This object contains a code which contains more specific information on
+          the test result, for example an error-code after a failed test - 1.3.6.1.2.1.31.1.3.1.5
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifTestOwner
+        oid: 1.3.6.1.2.1.31.1.3.1.6
+        type: DisplayString
+        help:
+          The entity which currently has the 'ownership' required to invoke a test
+          on this interface. - 1.3.6.1.2.1.31.1.3.1.6
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+      - name: ifRcvAddressAddress
+        oid: 1.3.6.1.2.1.31.1.4.1.1
+        type: PhysAddress48
+        help:
+          An address for which the system will accept packets/frames on this entry's
+          interface. - 1.3.6.1.2.1.31.1.4.1.1
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+          - labelname: ifRcvAddressAddress
+            type: PhysAddress48
+      - name: ifRcvAddressStatus
+        oid: 1.3.6.1.2.1.31.1.4.1.2
+        type: gauge
+        help:
+          This object is used to create and delete rows in the ifRcvAddressTable.
+          - 1.3.6.1.2.1.31.1.4.1.2
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+          - labelname: ifRcvAddressAddress
+            type: PhysAddress48
+        enum_values:
+          1: active
+          2: notInService
+          3: notReady
+          4: createAndGo
+          5: createAndWait
+          6: destroy
+      - name: ifRcvAddressType
+        oid: 1.3.6.1.2.1.31.1.4.1.3
+        type: gauge
+        help:
+          This object has the value nonVolatile(3) for those entries in the table
+          which are valid and will not be deleted by the next restart of the managed
+          system - 1.3.6.1.2.1.31.1.4.1.3
+        indexes:
+          - labelname: ifIndex
+            type: gauge
+          - labelname: ifRcvAddressAddress
+            type: PhysAddress48
+        enum_values:
+          1: other
+          2: volatile
+          3: nonVolatile
+      - name: ifTableLastChange
+        oid: 1.3.6.1.2.1.31.1.5
+        type: gauge
+        help:
+          The value of sysUpTime at the time of the last creation or deletion of
+          an entry in the ifTable - 1.3.6.1.2.1.31.1.5
+      - name: ifStackLastChange
+        oid: 1.3.6.1.2.1.31.1.6
+        type: gauge
+        help:
+          The value of sysUpTime at the time of the last change of the (whole) interface
+          stack - 1.3.6.1.2.1.31.1.6
+  system:
+    walk:
+      - 1.3.6.1.2.1.1
+    metrics:
+      - name: sysDescr
+        oid: 1.3.6.1.2.1.1.1
+        type: DisplayString
+        help: A textual description of the entity - 1.3.6.1.2.1.1.1
+      - name: sysObjectID
+        oid: 1.3.6.1.2.1.1.2
+        type: OctetString
+        help:
+          The vendor's authoritative identification of the network management subsystem
+          contained in the entity - 1.3.6.1.2.1.1.2
+      - name: sysUpTime
+        oid: 1.3.6.1.2.1.1.3
+        type: gauge
+        help:
+          The time (in hundredths of a second) since the network management portion
+          of the system was last re-initialized. - 1.3.6.1.2.1.1.3
+      - name: sysContact
+        oid: 1.3.6.1.2.1.1.4
+        type: DisplayString
+        help:
+          The textual identification of the contact person for this managed node,
+          together with information on how to contact this person - 1.3.6.1.2.1.1.4
+      - name: sysName
+        oid: 1.3.6.1.2.1.1.5
+        type: DisplayString
+        help: An administratively-assigned name for this managed node - 1.3.6.1.2.1.1.5
+      - name: sysLocation
+        oid: 1.3.6.1.2.1.1.6
+        type: DisplayString
+        help:
+          The physical location of this node (e.g., 'telephone closet, 3rd floor')
+          - 1.3.6.1.2.1.1.6
+      - name: sysServices
+        oid: 1.3.6.1.2.1.1.7
+        type: gauge
+        help:
+          A value which indicates the set of services that this entity may potentially
+          offer - 1.3.6.1.2.1.1.7
+      - name: sysORLastChange
+        oid: 1.3.6.1.2.1.1.8
+        type: gauge
+        help:
+          The value of sysUpTime at the time of the most recent change in state
+          or value of any instance of sysORID. - 1.3.6.1.2.1.1.8
+      - name: sysORIndex
+        oid: 1.3.6.1.2.1.1.9.1.1
+        type: gauge
+        help:
+          The auxiliary variable used for identifying instances of the columnar
+          objects in the sysORTable. - 1.3.6.1.2.1.1.9.1.1
+        indexes:
+          - labelname: sysORIndex
+            type: gauge
+      - name: sysORID
+        oid: 1.3.6.1.2.1.1.9.1.2
+        type: OctetString
+        help:
+          An authoritative identification of a capabilities statement with respect
+          to various MIB modules supported by the local SNMP application acting as a
+          command responder. - 1.3.6.1.2.1.1.9.1.2
+        indexes:
+          - labelname: sysORIndex
+            type: gauge
+      - name: sysORDescr
+        oid: 1.3.6.1.2.1.1.9.1.3
+        type: DisplayString
+        help:
+          A textual description of the capabilities identified by the corresponding
+          instance of sysORID. - 1.3.6.1.2.1.1.9.1.3
+        indexes:
+          - labelname: sysORIndex
+            type: gauge
+      - name: sysORUpTime
+        oid: 1.3.6.1.2.1.1.9.1.4
+        type: gauge
+        help:
+          The value of sysUpTime at the time this conceptual row was last instantiated.
+          - 1.3.6.1.2.1.1.9.1.4
+        indexes:
+          - labelname: sysORIndex
+            type: gauge
