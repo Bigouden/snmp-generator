@@ -1,0 +1,13 @@
+modules:
+  if_mib:
+    walk:
+      - ifMIB
+  entity_mib:
+    walk:
+      - entityMIB
+  system:
+    walk:
+      - system
+  dot3:
+    walk:
+      - dot3
