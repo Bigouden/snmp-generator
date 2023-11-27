@@ -1,4 +1,8 @@
 ---
+include:
+  - project: "Bigouden/gitlab-ci-templates"
+    file: ".gitlab-ci-common.yml"
+
 variables:
   CONTAINER_SNMP_GENERATOR: prom/snmp-generator:latest
 
@@ -13,6 +17,8 @@ variables:
     entrypoint: [""]
 
 stages:
+  - Quality
+  - Security
   - Build
   - Lint
   - Release
