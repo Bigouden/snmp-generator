@@ -27,13 +27,12 @@ Build:
   stage: Build
   extends: .snmp_generator
   script:
+    - export MIBDIRS=$(ls -d -1 $PWD/mibs/* | tr "\n" ":")
     - generator generate
   artifacts:
     paths:
       - snmp.yml
     expire_in: 5 mins
-  variables:
-    MIBDIRS: "mibs/GS108T_110TP_TPP_V7.0.9.17_MIBs"
 
 Lint:
   stage: Lint
