@@ -1,16 +1,16 @@
 --
--- ReadyNAS.mib
+-- READYNASOS-MIB.txt
 --
 
--- Copyright (c) 2001-2007 Netgear Inc.,
--- Module Name: ReadyNAS.mib
+-- Copyright (c) 2001-2012 Netgear Inc.,
+-- Module Name: READYNASOS.mib
 -- Abstract:
--- 	Defines the ReadyNAS NAS box MIBs .
+-- 	Defines the ReadynasOS MIBs .
 -- Authors: Justin Maggard, David Y. Yang
 -- 
 
 
-	READYNAS-MIB DEFINITIONS ::= BEGIN
+	READYNASOS-MIB DEFINITIONS ::= BEGIN
 
 		IMPORTS 
 			OBJECT-TYPE			
@@ -27,11 +27,32 @@
 --
 -- Node definitions
 --
-	
-		netgear  OBJECT IDENTIFIER ::= { enterprises 4526 }
-                productID  OBJECT IDENTIFIER ::= { netgear 100 }
-	        readyNAS  OBJECT IDENTIFIER ::= { productID 12}	
-		nasManager OBJECT IDENTIFIER ::= { netgear 18 }
+
+--		iso             OBJECT IDENTIFIER ::= { 1 }
+--		org             OBJECT IDENTIFIER ::= { iso 3 }
+--		dod             OBJECT IDENTIFIER ::= { org 6 }
+--		internet        OBJECT IDENTIFIER ::= { dod 1 }
+--		private         OBJECT IDENTIFIER ::= { internet 4 }
+--		enterprises     OBJECT IDENTIFIER ::= { private 1 }
+		netgear		OBJECT IDENTIFIER ::= { enterprises 4526 }
+                productID       OBJECT IDENTIFIER ::= { netgear 100 }
+--		Stackswitch     OBJECT IDENTIFIER ::= { productID 1 }
+--		L2switch        OBJECT IDENTIFIER ::= { productID 2 }
+--		L3switch        OBJECT IDENTIFIER ::= { productID 3 }
+--		Smartswitch     OBJECT IDENTIFIER ::= { productID 4 }
+--		Router          OBJECT IDENTIFIER ::= { productID 5 }
+--		Firewall        OBJECT IDENTIFIER ::= { productID 6 }
+--		Accesspoint     OBJECT IDENTIFIER ::= { productID 7 }
+--		WirelessLAN     OBJECT IDENTIFIER ::= { productID 8 }
+--		Chassisswitch   OBJECT IDENTIFIER ::= { productID 9 }
+--              Stacksmartswitch OBJECT IDENTIFIER ::= { productID 10 }
+--		ReadyNAS	OBJECT IDENTIFIER ::= { productID 12 }
+--		Wlanmanagement	OBJECT IDENTIFIER ::= { productID 13 }
+--		Security	OBJECT IDENTIFIER ::= { productID 14 }
+--		ReadyDATAOS	OBJECT IDENTIFIER ::= { productID 15 }
+		ReadyNASOS	OBJECT IDENTIFIER ::= { productID 16 }
+
+		ngNasManager    OBJECT IDENTIFIER ::= { netgear 22 }
 
                 
 		nasMgrSoftwareVersion OBJECT-TYPE
@@ -39,9 +60,17 @@
 			ACCESS read-only
 			STATUS current 
 			DESCRIPTION
-				"Version information for the ReadyNAS NAS
-				 Manager software."
-			::= { nasManager 1 }
+				"Version information for the ReadyNASOS
+				 ngNasManager software."
+			::= { ngNasManager 1 }
+
+                 nasMgrSerialNUM OBJECT-TYPE
+                        SYNTAX DisplayString (SIZE (1..32))
+                        ACCESS read-only
+                        STATUS current
+                        DESCRIPTION
+                               "Serial number for the ReadyNASOS."
+                        ::= { ngNasManager 2 }
 		
 		
 		diskTable OBJECT-TYPE
@@ -49,8 +78,8 @@
 			ACCESS not-accessible
 			STATUS mandatory
 			DESCRIPTION
-				"A table of physical disks attached to the NAS device."
-			::= { nasManager 3 }
+				"A table of physical disks attached to the storage device."
+			::= { ngNasManager 3 }
 		
 		diskEntry OBJECT-TYPE
 			SYNTAX DiskEntry
@@ -63,41 +92,91 @@
 		
 		DiskEntry ::=
 			SEQUENCE { 
-				diskNumber
-					INTEGER,
-				diskChannel
-					INTEGER,
+                                diskNumber
+                                        INTEGER,
+				diskID  
+					DisplayString,
+				diskSlotName
+					DisplayString,
+                                diskSerial
+                                        DisplayString,
 				diskModel
 					DisplayString,
+                                ataError
+                                        INTEGER,
+                                diskCapacity
+                                        DisplayString,
+                                diskInterface
+                                        DisplayString,
 				diskState
 					DisplayString,
                                 diskTemperature
                                         INTEGER
 			 }
 
-		diskNumber OBJECT-TYPE
-			SYNTAX INTEGER
+                diskNumber OBJECT-TYPE
+                        SYNTAX INTEGER
+                        ACCESS read-only
+                        STATUS mandatory
+                        DESCRIPTION
+                                "Instance number of the disk entry."
+                        ::= { diskEntry 1 }
+
+
+		diskID OBJECT-TYPE
+			SYNTAX DisplayString
 			ACCESS read-only
 			STATUS mandatory
 			DESCRIPTION
-				"Instance number of the disk entry."
-			::= { diskEntry 1 }
-		
-		diskChannel OBJECT-TYPE
-			SYNTAX INTEGER
-			ACCESS read-only
-			STATUS mandatory
-			DESCRIPTION
-				"Channel number that the disk is connected to."
+				"Disk ID."
 			::= { diskEntry 2 }
 		
+                diskSlotName OBJECT-TYPE
+			SYNTAX DisplayString
+			ACCESS read-only
+			STATUS mandatory
+			DESCRIPTION
+				"The slot location of the disk."
+			::= { diskEntry 3 }
+		diskSerial OBJECT-TYPE
+			SYNTAX DisplayString
+			ACCESS read-only
+			STATUS mandatory
+			DESCRIPTION
+				"Disk Serial number."
+			::= { diskEntry 4 }
+
 		diskModel OBJECT-TYPE
 			SYNTAX DisplayString
 			ACCESS read-only
 			STATUS mandatory
 			DESCRIPTION
 				"The disk drive's model name."
-			::= { diskEntry 3 }
+			::= { diskEntry 5 }
+		
+		ataError OBJECT-TYPE
+			SYNTAX INTEGER
+			ACCESS read-only
+			STATUS mandatory
+			DESCRIPTION
+				"ATA error number for this disk from S.M.A.R.T read."
+			::= { diskEntry 6 }
+		
+		diskCapacity OBJECT-TYPE
+			SYNTAX DisplayString
+			ACCESS read-only
+			STATUS mandatory
+			DESCRIPTION
+				"The capacity of the disk in bytes."
+			::= { diskEntry 7 }
+
+		diskInterface OBJECT-TYPE
+			SYNTAX DisplayString
+			ACCESS read-only
+			STATUS mandatory
+			DESCRIPTION
+				"The disk connect interface, such as SATA, USB etc."
+			::= { diskEntry 8 }
 		
 		diskState OBJECT-TYPE
 			SYNTAX DisplayString
@@ -108,21 +187,21 @@
 				Possible states:
 				 0: Online
 				 1: Offline"
-			::= { diskEntry 4 }
+			::= { diskEntry 9 }
 		
 	        diskTemperature OBJECT-TYPE
                         SYNTAX INTEGER
                         ACCESS read-only
                         STATUS mandatory
                         DESCRIPTION
-                                "temperature of this disk."
-                        ::= { diskEntry 5 }
+                                "temperature of this disk(in Fahrenheit unit)."
+                        ::= { diskEntry 10 }
 	
 		fanTable OBJECT-TYPE
 			SYNTAX SEQUENCE OF FanEntry
 			ACCESS not-accessible
 			STATUS current
-			::= { nasManager 4 }
+			::= { ngNasManager 4 }
 		
 		fanEntry OBJECT-TYPE
 			SYNTAX FanEntry
@@ -137,6 +216,8 @@
 					INTEGER,
 				fanRPM
 					INTEGER,
+                                fanStatus
+                                        DisplayString,
                                 fanType
                                         DisplayString
 			 }
@@ -158,6 +239,14 @@
 				"The current speed of the fan."
 			::= { fanEntry 2 }
 		
+		fanStatus OBJECT-TYPE
+			SYNTAX DisplayString
+			ACCESS read-only
+			STATUS mandatory
+			DESCRIPTION
+				"The status of Fan"
+			::= { fanEntry 3 }
+
 		fanType OBJECT-TYPE
 			SYNTAX DisplayString
 			ACCESS read-only
@@ -166,14 +255,14 @@
 				"What fan is used for:
 				 SYS: for system board
 				 CPU: for CPU
-                                 CAS: for system case"
-			::= { fanEntry 3 }		
+                                 CASE: for system case"
+			::= { fanEntry 4 }		
 
 		temperatureTable OBJECT-TYPE
 			SYNTAX SEQUENCE OF TemperatureEntry
 			ACCESS not-accessible
 			STATUS mandatory
-			::= { nasManager 5 }
+			::= { ngNasManager 5 }
 		
 		temperatureEntry OBJECT-TYPE
 			SYNTAX TemperatureEntry
@@ -188,8 +277,12 @@
 					INTEGER,
 				temperatureValue
 					INTEGER,
-                                temperatureStatus
-                                        DisplayString
+                                temperatureType
+                                        DisplayString,
+                                temperatureMin
+                                        INTEGER,
+                                temperatureMax
+                                        INTEGER
 			 }
 
 		temperatureNumber OBJECT-TYPE
@@ -205,26 +298,41 @@
 			ACCESS read-only
 			STATUS mandatory
 			DESCRIPTION
-				"The current temperature of this probe."
+				"The current temperature of this probe (in Fahrenheit unit)."
 			::= { temperatureEntry 2 }
 	
-                temperatureStatus OBJECT-TYPE
+                temperatureType OBJECT-TYPE
                         SYNTAX DisplayString
                         ACCESS read-only
                         STATUS mandatory
                         DESCRIPTION
-                                "The current temperature status."
+                                "The current temperature refer to"
+          
                         ::= { temperatureEntry 3 }
 
+		temperatureMin OBJECT-TYPE
+			SYNTAX INTEGER
+			ACCESS read-only
+			STATUS mandatory
+			DESCRIPTION
+				"The min temperature of this probe (in Fahrenheit unit)."
+			::= { temperatureEntry 4 }
 
+		temperatureMax OBJECT-TYPE
+			SYNTAX INTEGER
+			ACCESS read-only
+			STATUS mandatory
+			DESCRIPTION
+				"The max temperature of this probe (in Fahrenheit unit)."
+			::= { temperatureEntry 5 }
 
 		volumeTable OBJECT-TYPE
 			SYNTAX SEQUENCE OF VolumeEntry
 			ACCESS not-accessible
 			STATUS mandatory
 			DESCRIPTION
-				"A table of active volumes on the NAS device."
-			::= { nasManager 7 }
+				"A table of active volumes on the storage device."
+			::= { ngNasManager 7 }
 		
 		volumeEntry OBJECT-TYPE
 			SYNTAX VolumeEntry
@@ -282,9 +390,12 @@
 			DESCRIPTION
 				"The severity of the volume.
 				Possible values:
-				1: Clean
-				2: Error
-			       16: Initialized (Normal)"
+				1: REDUNDANT
+				2: UNPROTECTED
+                                3: DEGRADED
+                                4: DEAD
+			        5: INACTIVE
+                                6: UNKNOWN"
 			::= { volumeEntry 4 }
 		
 		volumeSize OBJECT-TYPE
@@ -307,7 +418,7 @@
 			SYNTAX SEQUENCE OF PSUEntry
 			ACCESS not-accessible
 			STATUS mandatory
-			::= { nasManager 8 }
+			::= { ngNasManager 8 }
 		
 		psuEntry OBJECT-TYPE
 			SYNTAX PSUEntry
@@ -351,7 +462,7 @@
                         ::= { psuEntry 3 }
 
 		
-		aryMgrEvts OBJECT IDENTIFIER ::= { nasManager 200 }
+		aryMgrEvts OBJECT IDENTIFIER ::= { ngNasManager 200 }
 		
 		controllerNameEv OBJECT-TYPE
 			SYNTAX DisplayString (SIZE (1..64))
@@ -466,7 +577,7 @@
                          STATUS current
                          DESCRIPTION
                                  "Failure message for Fan"
-                         ::= { nasManager 400 }		
+                         ::= { ngNasManager 400 }		
 
                 tempFailureMesg OBJECT-TYPE	
                          SYNTAX DisplayString
@@ -474,88 +585,95 @@
                          STATUS current
                          DESCRIPTION
                                  "Failure message for system temperature"
-                         ::= { nasManager 401 }		
+                         ::= { ngNasManager 401 }		
                          
-                powerFailureMesg OBJECT-TYPE	
+                powerVoltageMesg OBJECT-TYPE	
 
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION
                                  "Failure message for system power"
-                         ::= { nasManager 402 }		
+                         ::= { ngNasManager 402 }		
 
-                raidMesg OBJECT-TYPE	
+                raidEventNoticeMesg OBJECT-TYPE	
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION
                                  "RAID hotplug event message"
-                         ::= { nasManager 403 }
+                         ::= { ngNasManager 403 }
 		
-                snapshotMesg OBJECT-TYPE	
+                snapshotEventNoticeMesg OBJECT-TYPE	
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION
                                  "Snapshot messages"
-                         ::= { nasManager 404 }
+                         ::= { ngNasManager 404 }
 		
-                upsMesg OBJECT-TYPE	
+                upsEventNoticeMesg OBJECT-TYPE	
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION
                                  "UPS status message"
-                         ::= { nasManager 405 }
+                         ::= { ngNasManager 405 }
 		
-                sataMesg OBJECT-TYPE	
+                hotplugDiskNoticeMesg OBJECT-TYPE	
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION
-                                 "SATA hotplug event messages"
-                         ::= { nasManager 406 }		
-                volumeMesg OBJECT-TYPE	
+                                 "Disk hotplug event messages"
+                         ::= { ngNasManager 406 }		
+                volumeNoticeMesg OBJECT-TYPE	
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION
                                  "Disk usage warning"
-                         ::= { nasManager 407 }		
+                         ::= { ngNasManager 407 }		
                 diskTempWarningMesg OBJECT-TYPE
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION 
                                  "Disk temperature warning messages"
-                         ::= { nasManager 408 }
-                backupMesg OBJECT-TYPE	
+                         ::= { ngNasManager 408 }
+                backupNoticeMesg OBJECT-TYPE	
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION
                                  "Backup job status messages"
-                         ::= { nasManager 409 }
-                smartMesg OBJECT-TYPE	
+                         ::= { ngNasManager 409 }
+                diskSmartWarningMesg OBJECT-TYPE	
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION
                                  "Disk SMART messages"
-                         ::= { nasManager 410 }
-                psuMesg OBJECT-TYPE	
+                         ::= { ngNasManager 410 }
+                psuWarningMesg OBJECT-TYPE	
                          SYNTAX DisplayString
                          ACCESS read-only
                          STATUS current
                          DESCRIPTION
                                  "PSU status messages"
-                         ::= { nasManager 411 }
+                         ::= { ngNasManager 411 }
+                systemNoticeMesg OBJECT-TYPE	
+                         SYNTAX DisplayString
+                         ACCESS read-only
+                         STATUS current
+                         DESCRIPTION
+                                 "Various system alert messages"
+                         ::= { ngNasManager 412 }
 
 --
 -- Trap definitions
 --
-		nasTraps OBJECT IDENTIFIER ::= { nasManager  300 }
+		nasTraps OBJECT IDENTIFIER ::= { ngNasManager 300 }
 	
 		fanFailure TRAP-TYPE
 			ENTERPRISE nasTraps    
@@ -576,35 +694,33 @@
 			ENTERPRISE nasTraps    
 			VARIABLES { tempFailureMesg }
 			DESCRIPTION
-				"Temperature sensor reports out of normal
-range. "
+				"Temperature sensor reports out of normal range. "
 			::=  20
 --              ******************************************************
 		powerVoltage  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { powerFailureMesg }
+			VARIABLES { powerVoltageMesg }
 			DESCRIPTION
-				"System power is out of spec, please check
-system status! "
+				"System power is out of spec, please check system status! "
 			::=  30
 --              ******************************************************
 	        raidEventNotice  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { raidMesg  }
+			VARIABLES { raidEventNoticeMesg  }
 			DESCRIPTION
 				"RAID event detected! "
 			::=  40
 --              ******************************************************
 	        snapshotEventNotice  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { snapshotMesg  }
+			VARIABLES { snapshotEventNoticeMesg  }
 			DESCRIPTION
 				"Snapshot event detected! "
 			::=  50
 --              ******************************************************
 	        hotplugDiskNotice  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { sataMesg }
+			VARIABLES { hotplugDiskNoticeMesg }
 			DESCRIPTION
 				" Hotplug disk event detected! "
 			::=  60
@@ -612,14 +728,14 @@ system status! "
 --              ******************************************************
 	        upsEventNotice  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { upsMesg  }
+			VARIABLES { upsEventNoticeMesg  }
 			DESCRIPTION
 				"UPS status. "
 			::=  70
 --              ******************************************************
 	        volumeNotice  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { volumeMesg  }
+			VARIABLES { volumeNoticeMesg  }
 			DESCRIPTION
 				"Volume is approaching capacity. "
 			::=  80
@@ -627,7 +743,7 @@ system status! "
 --              ******************************************************
 	        diskTempWarning  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { volumeMesg  }
+			VARIABLES { diskTempWarningMesg  }
 			DESCRIPTION
 				"Disk temperature warning. "
 			::=  90
@@ -635,7 +751,7 @@ system status! "
 --              ******************************************************
 	        backupNotice  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { backupMesg  }
+			VARIABLES { backupNoticeMesg  }
 			DESCRIPTION
 				"Backup job status. "
 			::=  100
@@ -643,7 +759,7 @@ system status! "
 --              ******************************************************
 	        diskSmartWarning  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { smartMesg  }
+			VARIABLES { diskSmartWarningMesg  }
 			DESCRIPTION
 				"Disk SMART warning. "
 			::=  110
@@ -651,10 +767,18 @@ system status! "
 --              ******************************************************
 	        psuWarning  TRAP-TYPE
 			ENTERPRISE nasTraps    
-			VARIABLES { psuMesg  }
+			VARIABLES { psuWarningMesg  }
 			DESCRIPTION
 				"Power supply unit warning. "
 			::=  120
+
+--              ******************************************************
+	        systemNotice  TRAP-TYPE
+			ENTERPRISE nasTraps    
+			VARIABLES { systemNoticeMesg  }
+			DESCRIPTION
+				"Various system alerts. "
+			::=  130
 			
 --              ******************************************************
 			
@@ -664,5 +788,5 @@ system status! "
 	END
 
 --
--- ReadyNAS.mib
+-- READYNASOS-MIB.txt
 --
