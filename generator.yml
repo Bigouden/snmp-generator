@@ -11,9 +11,9 @@ modules:
   dot3:
     walk:
       - dot3
-  interface:
+  interfaces:
     walk:
-      - interface
+      - interfaces
   netgear:
     walk:
       - netgear
