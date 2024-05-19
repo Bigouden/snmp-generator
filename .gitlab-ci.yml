@@ -26,9 +26,14 @@ stages:
 Build:
   stage: Build
   extends: .snmp_generator
+  before_script:
+    - sed -i -e "s/main/main contrib non-free non-free-firmware/g" /etc/apt/sources.list.d/debian.sources
+    - apt update
+    - apt install -y snmp-mibs-downloader
   script:
-    - export MIBDIRS=$(ls -d -1 $PWD/mibs/* | tr "\n" ":")
-    - generator generate
+    - export MIBDIRS=$(ls -d -1 /var/lib/mibs/* $PWD/mibs/* | tr "\n" ":")
+    - generator --snmp.mibopts R parse_errors
+    - generator --snmp.mibopts R generate
   artifacts:
     paths:
       - snmp.yml
